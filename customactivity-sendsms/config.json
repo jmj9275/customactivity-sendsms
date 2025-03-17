@@ -1,5 +1,5 @@
 {
-    "key":"a00dcd4a-5ace-4d15-9732-cdb918fd5463",
+    "key":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
     "workflowApiVersion": "1.1",
     "name": "Send SMS",
     "description": "Send SMS through Smartpush",
@@ -36,7 +36,7 @@
       }
     },
     "configurationArguments": {
-        "applicationExtensionKey":"a00dcd4a-5ace-4d15-9732-cdb918fd5463",
+        "applicationExtensionKey":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
       "save": {
         "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/save"
       },
