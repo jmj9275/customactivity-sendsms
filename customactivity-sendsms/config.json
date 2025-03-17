@@ -1,0 +1,109 @@
+{
+    "key":"a00dcd4a-5ace-4d15-9732-cdb918fd5463",
+    "workflowApiVersion": "1.1",
+    "name": "Send SMS",
+    "description": "Send SMS through Smartpush",
+    "metaData": {
+      "icon": "images/icon.svg",
+      "category": "Custom",
+      "configOnDrop": true
+    },
+    "type": "REST",
+    "lang": {
+      "fr-FR": {
+        "name": "Envoi SMS Smartpush",
+        "description": "Envoi les SMS au travers de Smartpush"
+      }
+    },
+    "arguments": {
+      "execute": {
+        "inArguments": [
+          {
+            "subscriberKey": "{{Contact.Key}}",
+            "mobileNumber": "{{Event.EventKey.EmailAddress}}"
+          }
+        ],
+        "outArguments": [
+          {
+            "returnValue": "Demande effectuée avec succès ou pas..."
+          }
+        ],
+        "timeout": 20000,
+        "retryCount": 3,
+        "retryDelay": 5000,
+        "concurrentRequests": 6,
+        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/execute"
+      }
+    },
+    "configurationArguments": {
+        "applicationExtensionKey":"a00dcd4a-5ace-4d15-9732-cdb918fd5463",
+      "save": {
+        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/save"
+      },
+      "publish": {
+        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/publish"
+      },
+      "validate": {
+        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/validate"
+      },
+      "stop": {
+        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/stop"
+      }
+    },
+    "wizardSteps": [
+      {
+        "label": "Configurer la campagne Smartpush",
+        "key": "campaign_smartpush"
+      }
+    ],
+    "userInterfaces": {
+      "configModal": {
+        "fullscreen": true,
+        "url": "index.html"
+      }
+    },
+    "schema": {
+      "arguments": {
+        "execute": {
+          "inArguments": [
+            {
+              "subscriberKey": {
+                "dataType": "String",
+                "isNullable": false,
+                "direction": "in",
+                "access": "visible"
+              },
+              "mobileNumber": {
+                "dataType": "String",
+                "isNullable": false,
+                "direction": "in",
+                "access": "visible"
+              },
+              "campaignId": {
+                "dataType": "String",
+                "isNullable": false,
+                "direction": "in",
+                "access": "visible"
+              },
+              "surveyId": {
+                "dataType": "String",
+                "isNullable": false,
+                "direction": "in",
+                "access": "visible"
+              }
+            }
+          ],
+          "outArguments": [
+            {
+              "returnValue": {
+                "dataType": "Text",
+                "isNullable": false,
+                "direction": "out",
+                "access": "visible"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }

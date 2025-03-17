@@ -1,0 +1,20 @@
+{
+  "name": "custom-activity",
+  "version": "1.0.0",
+  "description": "Send SMS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "custom-activity"
+  },
+  "author": "Juan Manuel Jimenez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "path": "^0.12.7"
+  }
+}
