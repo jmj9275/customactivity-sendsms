@@ -1,42 +1,37 @@
 {
     "key":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
     "workflowApiVersion": "1.1",
-    "name": "Send SMS",
-    "description": "Send SMS through Smartpush",
     "metaData": {
-      "icon": "images/icon.svg",
-      "category": "Custom",
-      "configOnDrop": true
+      "icon": "images/sms.png",
+      "category": "message"
     },
     "type": "REST",
     "lang": {
-      "fr-FR": {
-        "name": "Envoi SMS Smartpush",
-        "description": "Envoi les SMS au travers de Smartpush"
+      "en-US": {
+        "name": "REST Activity (Workflow API v1.1)",
+        "description": "An example REST activity using workflow API v1.1 format."
       }
     },
     "arguments": {
       "execute": {
         "inArguments": [
           {
-            "subscriberKey": "{{Contact.Key}}",
-            "mobileNumber": "{{Event.EventKey.EmailAddress}}"
+            "emailAddress": "{{InteractionDefaults.Email}}"
+          },
+          {
+            "phoneNumber": "{{Contact.Default.PhoneNumber}}"
           }
         ],
         "outArguments": [
           {
-            "returnValue": "Demande effectuée avec succès ou pas..."
+            "foundSignupDate": ""
           }
         ],
-        "timeout": 20000,
-        "retryCount": 3,
-        "retryDelay": 5000,
-        "concurrentRequests": 6,
         "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/execute"
       }
     },
     "configurationArguments": {
-        "applicationExtensionKey":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
+      "applicationExtensionKey":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
       "save": {
         "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/save"
       },
@@ -51,15 +46,16 @@
       }
     },
     "wizardSteps": [
-      {
-        "label": "Configurer la campagne Smartpush",
-        "key": "campaign_smartpush"
-      }
+      { "label": "Step 1", "key": "step1" },
+      { "label": "Step 2", "key": "step2" },
+      { "label": "Step 3", "key": "step3" },
+      { "label": "Step 4", "key": "step4", "active": false }
     ],
     "userInterfaces": {
       "configModal": {
-        "fullscreen": true,
-        "url": "index.html"
+        "height": 200,
+        "width": 300,
+        "fullscreen": true
       }
     },
     "schema": {
@@ -67,37 +63,24 @@
         "execute": {
           "inArguments": [
             {
-              "subscriberKey": {
-                "dataType": "String",
+              "phoneNumber": {
+                "dataType": "Phone",
                 "isNullable": false,
-                "direction": "in",
-                "access": "visible"
-              },
-              "mobileNumber": {
-                "dataType": "String",
+                "direction": "in"
+              }
+            },
+            {
+              "emailAddress": {
+                "dataType": "Email",
                 "isNullable": false,
-                "direction": "in",
-                "access": "visible"
-              },
-              "campaignId": {
-                "dataType": "String",
-                "isNullable": false,
-                "direction": "in",
-                "access": "visible"
-              },
-              "surveyId": {
-                "dataType": "String",
-                "isNullable": false,
-                "direction": "in",
-                "access": "visible"
+                "direction": "in"
               }
             }
           ],
           "outArguments": [
             {
-              "returnValue": {
-                "dataType": "Text",
-                "isNullable": false,
+              "foundSignupDate": {
+                "dataType": "Date",
                 "direction": "out",
                 "access": "visible"
               }

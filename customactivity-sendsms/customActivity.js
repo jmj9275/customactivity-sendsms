@@ -6,15 +6,18 @@ define(["postmonger"], function (Postmonger) {
     var lastStepEnabled = false;
     var steps = [
       // initialize to the same value as what's set in config.json for consistency
-      { label: "Configurer la campagne Smartpush", key: "campaign_smartpush" },
+      { label: "Step 1", key: "step1" },
+      { label: "Step 2", key: "step2" },
+      { label: "Step 3", key: "step3" },
+      { label: "Step 4", key: "step4", active: false },
     ];
     var currentStep = steps[0].key;
   
     $(window).ready(onRender);
   
     connection.on("initActivity", initialize);
-    // connection.on("requestedTokens", onGetTokens);
-    // connection.on("requestedEndpoints", onGetEndpoints);
+    connection.on("requestedTokens", onGetTokens);
+    connection.on("requestedEndpoints", onGetEndpoints);
   
     connection.on("clickedNext", onClickedNext);
     connection.on("clickedBack", onClickedBack);
@@ -24,8 +27,8 @@ define(["postmonger"], function (Postmonger) {
       // JB will respond the first time 'ready' is called with 'initActivity'
       connection.trigger("ready");
   
-      //connection.trigger("requestTokens");
-      //connection.trigger("requestEndpoints");
+      connection.trigger("requestTokens");
+      connection.trigger("requestEndpoints");
   
       // Disable the next button if a value isn't selected
       $("#select1").change(function () {
@@ -87,15 +90,15 @@ define(["postmonger"], function (Postmonger) {
       }
     }
   
-    // function onGetTokens(tokens) {
-    //   // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
-    //   // console.log(tokens);
-    // }
+    function onGetTokens(tokens) {
+      // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
+      // console.log(tokens);
+    }
   
-    // function onGetEndpoints(endpoints) {
-    //   // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
-    //   // console.log(endpoints);
-    // }
+    function onGetEndpoints(endpoints) {
+      // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
+      // console.log(endpoints);
+    }
   
     function onClickedNext() {
       if (
