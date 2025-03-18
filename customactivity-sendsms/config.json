@@ -29,6 +29,10 @@
             "foundSignupDate": ""
           }
         ],
+        "timeout": 20000,
+        "retryCount": 3,
+        "retryDelay": 5000,
+        "concurrentRequests": 6,
         "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/execute"
       }
     },
