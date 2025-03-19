@@ -1,95 +1,113 @@
 {
-    "key":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
-    "workflowApiVersion": "1.1",
-    "name": "Send SMS",
-    "description": "Send SMS through Smartpush",
-    "metaData": {
-      "icon": "images/icon.svg",
-      "category": "custom"
+  "key": "e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
+  "workflowApiVersion": "1.1",
+  "name": "Send SMS",
+  "description": "Send SMS through Smartpush",
+  "metaData": {
+    "icon": "images/icon.svg",
+    "category": "custom"
+  },
+  "type": "REST",
+  "lang": {
+    "fr-FR": {
+      "name": "Envoi de SMS",
+      "description": "Envoi de SMS par Smartpush"
+    }
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [
+        {
+          "telephoneMobile": "{{telephoneMobile}}"
+        },
+        {
+          "codePostalVille": "{{codePostalVille}}"
+        },
+        {
+          "nomEnquete": "{{nomEnquete}}"
+        },
+        {
+          "SubscriberKey": "{{SubscriberKey}}"
+        }
+      ],
+      "outArguments": [
+        {
+          "status": "On Track"
+        }
+      ],
+      "timeout": 20000,
+      "retryCount": 3,
+      "retryDelay": 5000,
+      "concurrentRequests": 6,
+      "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/execute"
+    }
+  },
+  "configurationArguments": {
+    "applicationExtensionKey": "e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
+    "save": {
+      "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/save"
     },
-    "type": "REST",
-    "lang": {
-      "fr-FR": {
-        "name": "Envoi de SMS",
-        "description": "Envoi de SMS par Smartpush"
-      }
+    "publish": {
+      "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/publish"
     },
+    "validate": {
+      "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/validate"
+    },
+    "stop": {
+      "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/stop"
+    }
+  },
+  "wizardSteps": [{ "label": "Step 1", "key": "step1" }],
+  "userInterfaces": {
+    "configModal": {
+      "height": 200,
+      "width": 300,
+      "fullscreen": true
+    }
+  },
+  "schema": {
     "arguments": {
       "execute": {
         "inArguments": [
           {
-            "emailAddress": "{{InteractionDefaults.Email}}"
+            "telephoneMobile": {
+              "dataType": "Phone",
+              "isNullable": false,
+              "direction": "in"
+            }
           },
           {
-            "phoneNumber": "{{Contact.Default.PhoneNumber}}"
+            "codePostalVille": {
+              "dataType": "Text",
+              "isNullable": false,
+              "direction": "in"
+            }
+          },
+          {
+            "nomEnquete": {
+              "dataType": "Text",
+              "isNullable": false,
+              "direction": "in"
+            }
+          },
+          {
+            "SubscriberKey": {
+              "dataType": "Text",
+              "isNullable": false,
+              "direction": "in"
+            }
           }
         ],
         "outArguments": [
           {
-            "foundSignupDate": ""
+            "status": {
+              "dataType": "Text",
+              "direction": "out",
+              "access": "visible"
+            }
           }
-        ],
-        "timeout": 20000,
-        "retryCount": 3,
-        "retryDelay": 5000,
-        "concurrentRequests": 6,
-        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/execute"
-      }
-    },
-    "configurationArguments": {
-      "applicationExtensionKey":"e37bdae6-db95-4413-8e70-c16c3e6cb9bb",
-      "save": {
-        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/save"
-      },
-      "publish": {
-        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/publish"
-      },
-      "validate": {
-        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/validate"
-      },
-      "stop": {
-        "url": "https://customactivity-sendsms-38ded7313fc1.herokuapp.com/stop"
-      }
-    },
-    "wizardSteps": [
-      { "label": "Step 1", "key": "step1" }
-    ],
-    "userInterfaces": {
-      "configModal": {
-        "height": 200,
-        "width": 300,
-        "fullscreen": true
-      }
-    },
-    "schema": {
-      "arguments": {
-        "execute": {
-          "inArguments": [
-            {
-              "phoneNumber": {
-                "dataType": "Phone",
-                "isNullable": false,
-                "direction": "in"
-              }
-            },
-            {
-              "emailAddress": {
-                "dataType": "Email",
-                "isNullable": false,
-                "direction": "in"
-              }
-            }
-          ],
-          "outArguments": [
-            {
-              "foundSignupDate": {
-                "dataType": "Date",
-                "direction": "out",
-                "access": "visible"
-              }
-            }
-          ]
-        }
+        ]
       }
     }
   }
+}
