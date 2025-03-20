@@ -1,0 +1,46 @@
+[
+  {
+    "title": "string",
+    "author": "VBB1101NXXX",
+    "idCampaign": 0,
+    "canAddContact": true,
+    "campaignRef": "string",
+    "creationDate": "string",
+    "endDate": "string",
+    "status": "CREATING",
+    "templateId": 0
+  },
+  {
+    "title": "string",
+    "author": "VBB1101NXXX",
+    "idCampaign": 0,
+    "canAddContact": true,
+    "campaignRef": "string",
+    "creationDate": "string",
+    "endDate": "string",
+    "status": "CREATING",
+    "templateId": 0
+  },
+  {
+    "title": "string",
+    "author": "VBB1101NXXXYYYY",
+    "idCampaign": 0,
+    "canAddContact": true,
+    "campaignRef": "string",
+    "creationDate": "string",
+    "endDate": "string",
+    "status": "CREATING",
+    "templateId": 0
+  },
+  {
+    "title": "string",
+    "author": "VBB1101NXXXZZZZ",
+    "idCampaign": 0,
+    "canAddContact": true,
+    "campaignRef": "string",
+    "creationDate": "string",
+    "endDate": "string",
+    "status": "CREATING",
+    "templateId": 0
+  }
+]
