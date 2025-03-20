@@ -39,14 +39,16 @@ app.post("/stop", function (req, res) {
 //Called when a contact is flowing through the Journey.
 app.post("/execute", function (req, res) {
   // all dynamodb logic here //
+  console.log("req body execute");
+  console.log(req.body);
   console.log("debug: /execute");
   return res.status(200).json({});
 });
 
 // route to handle all requests and display page
-app.get("*", function (req, res) {
+/*app.get("*", function (req, res) {
   res.sendfile("./customactivity-sendsms/index.html");
-});
+});*/
 
 app.listen(app.get("port"), function () {
   console.log(`Custom Activity is running at localhost: ${app.get("port")}`);
