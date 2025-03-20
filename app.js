@@ -16,8 +16,6 @@ app.use(express.static(path.join(__dirname, "customactivity-sendsms")));
 app.post("/save", function (req, res) {
   console.log("req body save");
   console.log(req.body);
-  console.log("req body infos");
-  console.log(req.body.inArguments.userInfos);
 
   console.log("debug: /save");
   return res.status(200).json({});
