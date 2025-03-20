@@ -3,7 +3,8 @@ define(["postmonger"], function (Postmonger) {
 
   var connection = new Postmonger.Session();
   var payload = {};
-  var infos = {};
+  var infos;
+
   $(window).ready(onRender);
 
   connection.on("initActivity", initialize);
@@ -43,7 +44,6 @@ define(["postmonger"], function (Postmonger) {
     }
 
     var message;
-
     var hasInArguments = Boolean(
       payload["arguments"] &&
         payload["arguments"].execute &&
@@ -55,19 +55,12 @@ define(["postmonger"], function (Postmonger) {
       ? payload["arguments"].execute.inArguments
       : {};
 
+    infos = payload["arguments"].execute.inArguments;
+
     $.each(inArguments, function (index, inArgument) {
-      console.log("inArgument foreach 1");
-      console.log(inArgument);
-      infos.push(inArgument);
       $.each(inArgument, function (key, val) {
-        console.log("foreach 2 :");
-        console.log("f2 key : " + key);
-        console.log("f2 val : " + val);
         if (key === "message") {
           message = val;
-        }
-        if (key === "telephoneMobile") {
-          telephoneMobile = val;
         }
       });
     });
@@ -108,9 +101,10 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = name;
 
-    /* payload["arguments"].execute.inArguments = [
-      { message: value, fulldata: infos },
-    ];*/
+    payload["arguments"].execute.inArguments = [
+      { message: value },
+      { userInfos: infos },
+    ];
 
     payload["metaData"].isConfigured = true;
 
