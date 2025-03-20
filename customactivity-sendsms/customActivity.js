@@ -56,9 +56,8 @@ define(["postmonger"], function (Postmonger) {
       : {};
 
     infos = {
-      tel: payload["arguments"].execute.inArguments[0].telephoneMobile,
-      codePostalVille:
-        payload["arguments"].execute.inArguments[0].codePostalVille,
+      tel: "061122334455",
+      codePostalVille: "00000",
       nomEnquete: payload["arguments"].execute.inArguments[0].nomEnquete,
     };
 
