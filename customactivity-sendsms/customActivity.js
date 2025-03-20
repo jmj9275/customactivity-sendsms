@@ -43,6 +43,7 @@ define(["postmonger"], function (Postmonger) {
     }
 
     var message;
+    var infostoStore = [];
     var hasInArguments = Boolean(
       payload["arguments"] &&
         payload["arguments"].execute &&
@@ -57,7 +58,7 @@ define(["postmonger"], function (Postmonger) {
     $.each(inArguments, function (index, inArgument) {
       console.log("inArgument foreach 1");
       console.log(inArgument);
-
+      infostoStore.push(inArgument);
       $.each(inArgument, function (key, val) {
         console.log("foreach 2 :");
         console.log("f2 key : " + key);
