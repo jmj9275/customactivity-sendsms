@@ -55,12 +55,6 @@ define(["postmonger"], function (Postmonger) {
       ? payload["arguments"].execute.inArguments
       : {};
 
-    infos = {
-      tel: "061122334455",
-      codePostalVille: "00000",
-      nomEnquete: payload["arguments"].execute.inArguments[0].nomEnquete,
-    };
-
     $.each(inArguments, function (index, inArgument) {
       $.each(inArgument, function (key, val) {
         if (key === "message") {
@@ -105,7 +99,7 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = name;
 
-    payload["arguments"].execute.inArguments = [{ userInfos: infos }];
+    // payload["arguments"].execute.inArguments = [{ userInfos: infos }];
 
     payload["metaData"].isConfigured = true;
 
