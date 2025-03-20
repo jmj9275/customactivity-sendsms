@@ -14,24 +14,32 @@ app.use(express.static(path.join(__dirname, "customactivity-sendsms")));
 
 //Called when a journey is saving the activity.
 app.post("/save", function (req, res) {
+  console.log("req body save");
+  console.log(req.body);
   console.log("debug: /save");
   return res.status(200).json({});
 });
 
 //Called when a Journey has been published.
 app.post("/publish", function (req, res) {
+  console.log("req body publish");
+  console.log(req.body);
   console.log("debug: /publish");
   return res.status(200).json({});
 });
 
 //Called when Journey Builder wants you to validate the configuration to ensure the configuration is valid.
 app.post("/validate", function (req, res) {
+  console.log("req body validate");
+  console.log(req.body);
   console.log("debug: /validate");
   return res.status(200).json({});
 });
 
 //Called when a Journey is stopped.
 app.post("/stop", function (req, res) {
+  console.log("req body stop");
+  console.log(req.body);
   console.log("debug: /stop");
   return res.status(200).json({});
 });
