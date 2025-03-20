@@ -55,9 +55,18 @@ define(["postmonger"], function (Postmonger) {
       : {};
 
     $.each(inArguments, function (index, inArgument) {
+      console.log("inArgument foreach 1");
+      console.log(inArgument);
+
       $.each(inArgument, function (key, val) {
+        console.log("foreach 2 :");
+        console.log("f2 key : " + key);
+        console.log("f2 val : " + val);
         if (key === "message") {
           message = val;
+        }
+        if (key === "telephoneMobile") {
+          telephoneMobile = val;
         }
       });
     });
