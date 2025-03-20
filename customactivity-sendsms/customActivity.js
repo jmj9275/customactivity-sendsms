@@ -108,9 +108,9 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = name;
 
-    payload["arguments"].execute.inArguments = [
+    /* payload["arguments"].execute.inArguments = [
       { message: value, fulldata: infos },
-    ];
+    ];*/
 
     payload["metaData"].isConfigured = true;
 
