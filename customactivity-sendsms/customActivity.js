@@ -109,7 +109,7 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function onClickedNext() {
-    save();
+   // save();
   }
 
  //function save() {
