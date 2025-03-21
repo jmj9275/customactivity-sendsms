@@ -27,7 +27,10 @@
           "nomEnquete": "{{Contact.Attribute.poc_sms.nomEnquete}}"
         },
         {
-          "SubscriberKey": "{{InteractionDefaults.Email}}"
+          "SubscriberKey": "{{Contact.Attribute.poc_sms.SubscriberKey}}"
+        },
+        {
+          "email": "{{InteractionDefaults.Emai}}"
         }
       ],
       "outArguments": [
