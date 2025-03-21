@@ -16,14 +16,6 @@ define(["postmonger"], function (Postmonger) {
 
   connection.on("clickedNext", onClickedNext);
 
-  connection.on(
-    'requestedTriggerEventDefinition',
-    function (eventDefinitionModel) {
-      var eventKey = eventDefinitionModel['eventDefinitionKey'];
-      save(eventKey);
-    }
-  );
-
   function onRender() {
     // JB will respond the first time 'ready' is called with 'initActivity'
     connection.trigger("ready");
@@ -109,45 +101,32 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function onClickedNext() {
-   // save();
+    save();
   }
 
- //function save() {
-    //var name = $("#select1").find("option:selected").html();
-    //var value = getMessage();
+  function save() {
+    var name = $("#select1").find("option:selected").html();
+    var value = getMessage();
 
     // 'payload' is initialized on 'initActivity' above.
     // Journey Builder sends an initial payload with defaults
     // set by this activity's config.json file.  Any property
     // may be overridden as desired.
     //payload.name = name;
-    //payload["arguments"].execute.inArguments.push({
+    payload["arguments"].execute.inArguments.push({
        /* "telephoneMobile": telephoneMobile,
         "codePostalVille": codePostalVille,
         "nomEnquete": nomEnquete,
         "SubscriberKey": SubscriberKey,*/
-       // "message": value
-     // });
+        "message": value
+      });
     
     
 
-   // payload["metaData"].isConfigured = true;
+    payload["metaData"].isConfigured = true;
 
-   // connection.trigger("updateActivity", payload);
- //}
-
- function save(eventKey) {
-  // subscriberKey fetched directly from Contact model
-  // columnName is populated from the Journey Data model
-  var params = {
-    subscriberKey: '{{Contact.key}}',
-    telephoneMobile: '{{Event.' + eventKey + '.telephoneMobile}}',
-    codePostalVille: '{{Event.' + eventKey + '.codePostalVille}}',
-    nomEnquete: '{{Event.' + eventKey + '.nomEnquete}}',
-    SubKey: '{{Event.' + eventKey + '.SubscriberKey}}'
-  };
-  payload['arguments'].execute.inArguments = [params];
-}
+    connection.trigger("updateActivity", payload);
+  }
 
   function getMessage() {
     return $("#select1").find("option:selected").attr("value").trim();
