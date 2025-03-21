@@ -113,13 +113,13 @@ define(["postmonger"], function (Postmonger) {
     // set by this activity's config.json file.  Any property
     // may be overridden as desired.
     //payload.name = name;
-    payload["arguments"].execute.inArguments.push({
+    //payload["arguments"].execute.inArguments.push({
        /* "telephoneMobile": telephoneMobile,
         "codePostalVille": codePostalVille,
         "nomEnquete": nomEnquete,
         "SubscriberKey": SubscriberKey,*/
-        "message": value
-      });
+       // "message": value
+     // }); 
     
     
 
