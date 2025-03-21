@@ -17,18 +17,7 @@
   "arguments": {
     "execute": {
       "inArguments": [
-        {
-          "telephoneMobile": "{{Contact.Attribute.poc_sms.telephoneMobile}}"
-        },
-        {
-          "codePostalVille": "{{Contact.Attribute.poc_sms.codePostalVille}}"
-        },
-        {
-          "nomEnquete": "{{Contact.Attribute.poc_sms.nomEnquete}}"
-        },
-        {
-          "SubscriberKey": "{{Contact.Attribute.poc_sms.SubscriberKey}}"
-        }
+        
       ],
       "outArguments": [
         {
@@ -69,34 +58,7 @@
     "arguments": {
       "execute": {
         "inArguments": [
-          {
-            "telephoneMobile": {
-              "dataType": "Phone",
-              "isNullable": false,
-              "direction": "in"
-            }
-          },
-          {
-            "codePostalVille": {
-              "dataType": "Text",
-              "isNullable": false,
-              "direction": "in"
-            }
-          },
-          {
-            "nomEnquete": {
-              "dataType": "Text",
-              "isNullable": false,
-              "direction": "in"
-            }
-          },
-          {
-            "SubscriberKey": {
-              "dataType": "Text",
-              "isNullable": false,
-              "direction": "in"
-            }
-          }
+         
         ],
         "outArguments": [
           {
