@@ -116,12 +116,12 @@ define(["postmonger"], function (Postmonger) {
 
     payload["arguments"].execute.inArguments = [
       {
-        telephoneMobile: telephoneMobile,
-        codePostalVille: codePostalVille,
-        nomEnquete: nomEnquete,
-        SubscriberKey: SubscriberKey,
-        message: value,
-      },
+        "telephoneMobile": telephoneMobile,
+        "codePostalVille": codePostalVille,
+        "nomEnquete": nomEnquete,
+        "SubscriberKey": SubscriberKey,
+        "message": value
+      }
     ];
 
     payload["metaData"].isConfigured = true;
