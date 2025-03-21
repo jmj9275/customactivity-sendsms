@@ -3,7 +3,10 @@ define(["postmonger"], function (Postmonger) {
 
   var connection = new Postmonger.Session();
   var payload = {};
-  var infos;
+  var telephoneMobile;
+  var codePostalVille;
+  var nomEnquete;
+  var SubscriberKey;
 
   $(window).ready(onRender);
 
@@ -57,6 +60,18 @@ define(["postmonger"], function (Postmonger) {
 
     $.each(inArguments, function (index, inArgument) {
       $.each(inArgument, function (key, val) {
+        if (key === "SubscriberKey") {
+          SubscriberKey = val;
+        }
+        if (key === "telephoneMobile") {
+          telephoneMobile = val;
+        }
+        if (key === "codePostalVille") {
+          codePostalVille = val;
+        }
+        if (key === "nomEnquete") {
+          nomEnquete = val;
+        }
         if (key === "message") {
           message = val;
         }
@@ -99,7 +114,15 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = name;
 
-    // payload["arguments"].execute.inArguments = [{ userInfos: infos }];
+    payload["arguments"].execute.inArguments = [
+      {
+        telephoneMobile: telephoneMobile,
+        codePostalVille: codePostalVille,
+        nomEnquete: nomEnquete,
+        SubscriberKey: SubscriberKey,
+        message: value,
+      },
+    ];
 
     payload["metaData"].isConfigured = true;
 
