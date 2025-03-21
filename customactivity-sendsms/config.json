@@ -30,7 +30,16 @@
           "SubscriberKey": "{{Contact.Attribute.poc_sms.SubscriberKey}}"
         },
         {
-          "email": "{{InteractionDefaults.Emai}}"
+          "email": "{{InteractionDefaults.Email}}"
+        },
+        {
+          "quest":"{{Event.EventKey.nomEnquete}}"
+        },
+        {
+          "TL": "{{Event.EventKey.telephoneMobile}}"
+        },
+        {
+          "SubKey": "{{Event.EventKey.SubscriberKey}}"
         }
       ],
       "outArguments": [
