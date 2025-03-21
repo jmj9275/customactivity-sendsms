@@ -119,7 +119,7 @@ define(["postmonger"], function (Postmonger) {
         "nomEnquete": nomEnquete,
         "SubscriberKey": SubscriberKey,*/
        // "message": value
-     // });
+     // }); 
     
     
 
