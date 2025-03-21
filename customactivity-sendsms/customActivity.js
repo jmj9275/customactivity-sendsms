@@ -112,9 +112,8 @@ define(["postmonger"], function (Postmonger) {
     // Journey Builder sends an initial payload with defaults
     // set by this activity's config.json file.  Any property
     // may be overridden as desired.
-    payload.name = name;
-
-    payload["arguments"].execute.inArguments = [
+    //payload.name = name;
+   /* payload["arguments"].execute.inArguments = [
       {
         "telephoneMobile": telephoneMobile,
         "codePostalVille": codePostalVille,
@@ -122,7 +121,14 @@ define(["postmonger"], function (Postmonger) {
         "SubscriberKey": SubscriberKey,
         "message": value
       }
-    ];
+    ];*/
+    
+      payload["arguments"].execute.inArguments.push({"telephoneMobile": telephoneMobile});
+      payload["arguments"].execute.inArguments.push({"codePostalVille": codePostalVille});
+      payload["arguments"].execute.inArguments.push({"nomEnquete": nomEnquete});
+      payload["arguments"].execute.inArguments.push({"SubscriberKey": SubscriberKey});
+      payload["arguments"].execute.inArguments.push({"message": value});
+    
 
     payload["metaData"].isConfigured = true;
 
