@@ -18,28 +18,19 @@
     "execute": {
       "inArguments": [
         {
-          "telephoneMobile": "{{Contact.Attribute.poc_sms.telephoneMobile}}"
+          "telephoneMobile": "{{Event.EventKey.telephoneMobile}}"
         },
         {
           "codePostalVille": "{{Contact.Attribute.poc_sms.codePostalVille}}"
         },
         {
-          "nomEnquete": "{{Contact.Attribute.poc_sms.nomEnquete}}"
+          "nomEnquete": "{{Event.EventKey.nomEnquete}}"
         },
         {
           "SubscriberKey": "{{Contact.Attribute.poc_sms.SubscriberKey}}"
         },
         {
           "email": "{{InteractionDefaults.Email}}"
-        },
-        {
-          "quest":"{{Event.EventKey.nomEnquete}}"
-        },
-        {
-          "TL": "{{Event.EventKey.telephoneMobile}}"
-        },
-        {
-          "SubKey": "{{Event.EventKey.SubscriberKey}}"
         }
       ],
       "outArguments": [
