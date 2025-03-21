@@ -114,10 +114,10 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     //payload.name = name;
     payload["arguments"].execute.inArguments.push({
-        "telephoneMobile": telephoneMobile,
+       /* "telephoneMobile": telephoneMobile,
         "codePostalVille": codePostalVille,
         "nomEnquete": nomEnquete,
-        "SubscriberKey": SubscriberKey,
+        "SubscriberKey": SubscriberKey,*/
         "message": value
       });
     
