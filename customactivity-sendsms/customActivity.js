@@ -46,8 +46,9 @@ define(["postmonger"], function (Postmonger) {
       
       let campaigns = json.content;
       let campaignDisplayArr = [];
+      let templateArr = [];
       campaigns.forEach(campaign => {
-        campaignDisplay = {
+        /*campaignDisplay = {
           "campaignId": campaign.id,
           "campaignRef": campaign.campaignRef,
           "title": campaign.title,
@@ -57,7 +58,36 @@ define(["postmonger"], function (Postmonger) {
           "templateId": campaign.template[0].id,
           "templateContent": campaign.template[0].content,
           "channelCode": campaign.template[0].channelCode
-        }
+        }*/
+          campaignDisplay = {
+            "campaignId": campaign.id,
+            "campaignRef": campaign.campaignRef,
+            "title": campaign.title,
+            "description": campaign.description,
+            "nbMsgSent": campaign.nbMsgSent,
+            "author": campaign.author            
+          }
+          if(campaign.template != null) {
+              if(campaign.template.length > 1) {
+                campaign.template.forEach((templ, idx)=> {
+                  template = {
+                    "templateId": templ[idx].id,
+                    "templateContent":templ[idx].content,
+                    "channelCode": templ[idx].channelCode
+                  }
+                  templateArr.push(template);
+                  campaignDisplayArr.push(templateArr);    
+                })
+
+              } else {
+                campaignDisplay.template = {
+                  "templateId": campaign.template[0].id,
+                  "templateContent": campaign.template[0].content,
+                  "channelCode": campaign.template[0].channelCode
+                }
+              }
+
+          } 
         campaignDisplayArr.push(campaignDisplay);    
       });
       console.log('campaignDisplay');
