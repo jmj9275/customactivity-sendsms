@@ -65,8 +65,19 @@ define(["postmonger"], function (Postmonger) {
       console.log('campaignDisplayArr');
       console.log(campaignDisplayArr);
       
-      document.getElementById("configuration").value = JSON.stringify(campaignDisplay);
-    });   
+      document.getElementById("configuration").value = JSON.stringify(campaignDisplayArr);
+    });
+    $.each(campaignDisplayArr, function(i) {
+      var templateString = '<article class="card"><h2>' + campaignDisplayArr[i].title + '</h2><p>' + campaignDisplayArr[i].description + '</p><p>' + campaignDisplayArr[i].templateId + '</p>'
+      +'<P>'+ campaignDisplayArr[i].content+'</P>'+ '<button class="alertButton">Select Campaign</button></article>';
+      $('#camp').append(templateString);
+    })
+  
+    $(".alertButton").on("click", function() {
+      alert("test");
+    });
+    
+
   }
 
   function initialize(data) {
