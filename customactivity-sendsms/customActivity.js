@@ -1,12 +1,14 @@
 define(["postmonger"], function (Postmonger) {
   "use strict";
 
+  var mockCampaign = require('./mockCampaign.json');
   var connection = new Postmonger.Session();
   var payload = {};
   var telephoneMobile;
   var codePostalVille;
   var nomEnquete;
   var SubscriberKey;
+  var campaignDisplay;
 
   $(window).ready(onRender);
 
@@ -22,6 +24,7 @@ define(["postmonger"], function (Postmonger) {
 
     connection.trigger("requestTokens");
     connection.trigger("requestEndpoints");
+    getCampaignData();
 
     // Disable the next button if a value isn't selected
     $("#select1").change(function () {
@@ -36,11 +39,7 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function initialize(data) {
-    document.getElementById("configuration").value = JSON.stringify(
-      data,
-      null,
-      2
-    );
+    document.getElementById("configuration").value = campaignDisplay;
 
     if (data) {
       payload = data;
@@ -118,7 +117,7 @@ define(["postmonger"], function (Postmonger) {
         "codePostalVille": codePostalVille,
         "nomEnquete": nomEnquete,
         "SubscriberKey": SubscriberKey,*/
-       // "message": value
+       // "campaignId": value
      // }); 
     
     
@@ -130,5 +129,24 @@ define(["postmonger"], function (Postmonger) {
 
   function getMessage() {
     return $("#select1").find("option:selected").attr("value").trim();
+  }
+
+  function getCampaignData() {
+    // get json 
+    // create object to display
+     // obj recomposed
+    let campaign = mockCampaign.content[0];
+    campaignDisplay = {
+      "campaignId": campaign.id,
+      "campaignRef": campaign.campaignRef,
+      "title": campaign.title,
+      "description": campaign.description,
+      "nbMsgSent": campaign.nbMsgSent,
+      "author": campaign.author,
+      "templateId": campaign.template[0].id,
+      "templateContent": campaign.template[0].content,
+      "channelCode": campaign.template[0].channelCode
+    }
+    return campaignDisplay;
   }
 });
