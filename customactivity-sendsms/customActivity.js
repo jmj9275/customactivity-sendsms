@@ -40,11 +40,11 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function getCampaignData() {
-    var mockCampaign = $.getJSON("mockCampaign.json", function(json) {
+    $.getJSON("mockCampaign.json", function(json) {
       console.log("mockCampaign");
       console.log(json);
       
-      let campaigns = mockCampaign.content;
+      let campaigns = json.content;
       campaigns.forEach(campaign => {
         campaignDisplay = {
           "campaignId": campaign.id,
