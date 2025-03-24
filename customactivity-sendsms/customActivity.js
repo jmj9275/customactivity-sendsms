@@ -45,6 +45,7 @@ define(["postmonger"], function (Postmonger) {
       console.log(json);
       
       let campaigns = json.content;
+      let campaignDisplayArr = [];
       campaigns.forEach(campaign => {
         campaignDisplay = {
           "campaignId": campaign.id,
@@ -56,11 +57,15 @@ define(["postmonger"], function (Postmonger) {
           "templateId": campaign.template[0].id,
           "templateContent": campaign.template[0].content,
           "channelCode": campaign.template[0].channelCode
-        }      
+        }
+        campaignDisplayArr.push(campaignDisplay);    
       });
       console.log('campaignDisplay');
       console.log(campaignDisplay);
-      document.getElementById("configuration").value = campaignDisplay;
+      console.log('campaignDisplayArr');
+      console.log(campaignDisplayArr);
+      
+      document.getElementById("configuration").value = JSON.stringify(campaignDisplay);
     });   
   }
 
