@@ -8,6 +8,7 @@ define(["postmonger"], function (Postmonger) {
   var nomEnquete;
   var SubscriberKey;
   var campaignDisplay;
+  var template;
 
   $(window).ready(onRender);
 
@@ -46,7 +47,7 @@ define(["postmonger"], function (Postmonger) {
       
       let campaigns = json.content;
       let campaignDisplayArr = [];
-      let templateArr = [];
+      let templateArr = [];      
       campaigns.forEach(campaign => {
         /*campaignDisplay = {
           "campaignId": campaign.id,
