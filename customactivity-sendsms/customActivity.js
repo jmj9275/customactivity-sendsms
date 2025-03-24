@@ -43,7 +43,31 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function initialize(data) {
-    getCampaignData();
+    //getCampaignData();
+    let campaigns = mockCampaign.content;
+    $.each(campaigns, function (index, campaign) {   
+      console.log('campaign');
+    console.log(campaign); 
+      campaignDisplay = {
+        "campaignId": campaign.id,
+        "campaignRef": campaign.campaignRef,
+        "title": campaign.title,
+        "description": campaign.description,
+        "nbMsgSent": campaign.nbMsgSent,
+        "author": campaign.author,
+        "templateId": campaign.template[0].id,
+        "templateContent": campaign.template[0].content,
+        "channelCode": campaign.template[0].channelCode
+      }  
+      console.log('campaignDisplay');
+    console.log(campaignDisplay);    
+    });
+
+
+
+
+
+
     document.getElementById("configuration").value = campaignDisplay;
 
     if (data) {
