@@ -139,7 +139,7 @@ define(["postmonger"], function (Postmonger) {
     // get json 
     // create object to display
      // obj recomposed
-    let campaigns = mockCampaign;
+    let campaigns = mockCampaign.content;
     campaigns.forEach(campaign => {
       campaignDisplay = {
         "campaignId": campaign.id,
