@@ -17,6 +17,7 @@ define(["postmonger"], function (Postmonger) {
   $(window).ready(onRender);
 
   connection.on("initActivity", initialize);
+  connection.on("initActivity", getCampaignData);
   connection.on("requestedTokens", onGetTokens);
   connection.on("requestedEndpoints", onGetEndpoints);
 
@@ -43,32 +44,8 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function initialize(data) {
-    //getCampaignData();
-    let campaigns = mockCampaign.content;
-    $.each(campaigns, function (index, campaign) {   
-      console.log('campaign');
-    console.log(campaign); 
-      campaignDisplay = {
-        "campaignId": campaign.id,
-        "campaignRef": campaign.campaignRef,
-        "title": campaign.title,
-        "description": campaign.description,
-        "nbMsgSent": campaign.nbMsgSent,
-        "author": campaign.author,
-        "templateId": campaign.template[0].id,
-        "templateContent": campaign.template[0].content,
-        "channelCode": campaign.template[0].channelCode
-      }  
-      console.log('campaignDisplay');
-    console.log(campaignDisplay);    
-    });
-
-
-
-
-
-
-    document.getElementById("configuration").value = campaignDisplay;
+    
+    //document.getElementById("configuration").value = campaignDisplay;
 
     if (data) {
       payload = data;
@@ -165,9 +142,7 @@ define(["postmonger"], function (Postmonger) {
     // create object to display
      // obj recomposed
     let campaigns = mockCampaign.content;
-    $.each(campaigns, function (index, campaign) {   
-      console.log('campaign');
-    console.log(campaign); 
+    campaigns.forEach(campaign => {
       campaignDisplay = {
         "campaignId": campaign.id,
         "campaignRef": campaign.campaignRef,
@@ -178,9 +153,10 @@ define(["postmonger"], function (Postmonger) {
         "templateId": campaign.template[0].id,
         "templateContent": campaign.template[0].content,
         "channelCode": campaign.template[0].channelCode
-      }  
-      console.log('campaignDisplay');
-    console.log(campaignDisplay);    
-    });    
+      }      
+    });  
+
+    document.getElementById("configuration").value = campaignDisplay;
+   
   }
 });
