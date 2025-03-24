@@ -154,6 +154,8 @@ define(["postmonger"], function (Postmonger) {
       }      
     });
     
+    console.log('campaignDisplay');
+    console.log(campaignDisplay);
    
   }
 });
