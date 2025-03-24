@@ -69,7 +69,7 @@ define(["postmonger"], function (Postmonger) {
 
       $.each(campaignDisplayArr, function(i) {
         var templateString = '<article class="card"><h2>' + campaignDisplayArr[i].title + '</h2><p>' + campaignDisplayArr[i].description + '</p><p>' + campaignDisplayArr[i].templateId + '</p>'
-        +'<P>'+ campaignDisplayArr[i].content+'</P>'+ '<button class="alertButton">Select Campaign</button></article>';
+        +'<P>'+ campaignDisplayArr[i].templateContent+'</P>'+ '<button class="alertButton">Select Campaign</button></article>';
         $('#camp').append(templateString);
       })
 
