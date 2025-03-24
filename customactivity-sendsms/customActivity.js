@@ -65,7 +65,7 @@ define(["postmonger"], function (Postmonger) {
       console.log('campaignDisplayArr');
       console.log(campaignDisplayArr);
       
-      document.getElementById("configuration").value = JSON.stringify(campaignDisplay);
+      document.getElementById("configuration").value = JSON.stringify(campaignDisplayArr);
     });   
   }
 
