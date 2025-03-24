@@ -1,10 +1,5 @@
 define(["postmonger"], function (Postmonger) {
-  "use strict";
-
-  var mockCampaign = $.getJSON("mockCampaign.json", function(json) {
-    console.log("mockCampaign");
-    console.log(json); 
-  });
+  "use strict"; 
 
   var connection = new Postmonger.Session();
   var payload = {};
@@ -16,8 +11,9 @@ define(["postmonger"], function (Postmonger) {
 
   $(window).ready(onRender);
 
-  connection.on("initActivity", initialize);
   connection.on("initActivity", getCampaignData);
+  connection.on("initActivity", initialize);
+  
   connection.on("requestedTokens", onGetTokens);
   connection.on("requestedEndpoints", onGetEndpoints);
 
@@ -41,6 +37,31 @@ define(["postmonger"], function (Postmonger) {
 
       $("#message").html(message);
     });
+  }
+
+  function getCampaignData() {
+    var mockCampaign = $.getJSON("mockCampaign.json", function(json) {
+      console.log("mockCampaign");
+      console.log(json);
+      
+      let campaigns = mockCampaign.content;
+      campaigns.forEach(campaign => {
+        campaignDisplay = {
+          "campaignId": campaign.id,
+          "campaignRef": campaign.campaignRef,
+          "title": campaign.title,
+          "description": campaign.description,
+          "nbMsgSent": campaign.nbMsgSent,
+          "author": campaign.author,
+          "templateId": campaign.template[0].id,
+          "templateContent": campaign.template[0].content,
+          "channelCode": campaign.template[0].channelCode
+        }      
+      });
+      console.log('campaignDisplay');
+      console.log(campaignDisplay);
+      document.getElementById("configuration").value = campaignDisplay;
+    });   
   }
 
   function initialize(data) {
@@ -137,26 +158,5 @@ define(["postmonger"], function (Postmonger) {
     return $("#select1").find("option:selected").attr("value").trim();
   }
 
-  function getCampaignData() {
-    // get json 
-    // create object to display
-     // obj recomposed
-    let campaigns = mockCampaign.content;
-    campaigns.forEach(campaign => {
-      campaignDisplay = {
-        "campaignId": campaign.id,
-        "campaignRef": campaign.campaignRef,
-        "title": campaign.title,
-        "description": campaign.description,
-        "nbMsgSent": campaign.nbMsgSent,
-        "author": campaign.author,
-        "templateId": campaign.template[0].id,
-        "templateContent": campaign.template[0].content,
-        "channelCode": campaign.template[0].channelCode
-      }      
-    });  
-
-    document.getElementById("configuration").value = campaignDisplay;
-   
-  }
+  
 });
