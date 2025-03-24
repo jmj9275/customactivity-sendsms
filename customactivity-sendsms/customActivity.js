@@ -99,17 +99,18 @@ define(["postmonger"], function (Postmonger) {
       document.getElementById("configuration").value = JSON.stringify(campaignDisplayArr);
 
       $.each(campaignDisplayArr, function(i) {
-        var templateString = '<article class="card"><h2>' + campaignDisplayArr[i].title + '</h2><p>' + campaignDisplayArr[i].description + '</p><p>' + campaignDisplayArr[i].templateId + '</p>'
-        +'<P>'+ campaignDisplayArr[i].templateContent+'</P>'+ '<button class="alertButton">Select Campaign</button></article>';
+        var templateString = '<article class="card"><h2>' + campaignDisplayArr[i].title + '</h2><p>' + campaignDisplayArr[i].description + '</p><p>' + campaignDisplayArr[i].template + '</p>'
+        +'<P>'+ campaignDisplayArr[i].template.templateContent+'</P>'+ '<button class="alertButton" id='+campaignDisplayArr[i].campaignId+'>Select Campaign</button></article>';
         $('#camp').append(templateString);
       })
+      $(".alertButton").on("click", function() {
+        alert(campaignDisplayArr[i].campaignId);
+      });
 
     });
     
   
-    $(".alertButton").on("click", function() {
-      alert("test");
-    });
+    
     
 
   }
