@@ -140,7 +140,9 @@ define(["postmonger"], function (Postmonger) {
     // create object to display
      // obj recomposed
     let campaigns = mockCampaign.content;
-    $.each(campaigns, function (index, campaign) {    
+    $.each(campaigns, function (index, campaign) {   
+      console.log('campaign');
+    console.log(campaign); 
       campaignDisplay = {
         "campaignId": campaign.id,
         "campaignRef": campaign.campaignRef,
@@ -151,11 +153,9 @@ define(["postmonger"], function (Postmonger) {
         "templateId": campaign.template[0].id,
         "templateContent": campaign.template[0].content,
         "channelCode": campaign.template[0].channelCode
-      }      
-    });
-    
-    console.log('campaignDisplay');
-    console.log(campaignDisplay);
-   
+      }  
+      console.log('campaignDisplay');
+    console.log(campaignDisplay);    
+    });    
   }
 });
