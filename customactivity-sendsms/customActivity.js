@@ -1,7 +1,11 @@
 define(["postmonger"], function (Postmonger) {
   "use strict";
 
-  var mockCampaign = require('./mockCampaign.json');
+  var mockCampaign = $.getJSON("mockCampaign.json", function(json) {
+    console.log("mockCampaign");
+    console.log(json); 
+  });
+
   var connection = new Postmonger.Session();
   var payload = {};
   var telephoneMobile;
