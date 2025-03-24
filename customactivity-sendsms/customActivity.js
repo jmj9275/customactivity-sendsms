@@ -139,18 +139,21 @@ define(["postmonger"], function (Postmonger) {
     // get json 
     // create object to display
      // obj recomposed
-    let campaign = mockCampaign.content[0];
-    campaignDisplay = {
-      "campaignId": campaign.id,
-      "campaignRef": campaign.campaignRef,
-      "title": campaign.title,
-      "description": campaign.description,
-      "nbMsgSent": campaign.nbMsgSent,
-      "author": campaign.author,
-      "templateId": campaign.template[0].id,
-      "templateContent": campaign.template[0].content,
-      "channelCode": campaign.template[0].channelCode
-    }
-    return campaignDisplay;
+    let campaigns = mockCampaign;
+    campaigns.forEach(campaign => {
+      campaignDisplay = {
+        "campaignId": campaign.id,
+        "campaignRef": campaign.campaignRef,
+        "title": campaign.title,
+        "description": campaign.description,
+        "nbMsgSent": campaign.nbMsgSent,
+        "author": campaign.author,
+        "templateId": campaign.template[0].id,
+        "templateContent": campaign.template[0].content,
+        "channelCode": campaign.template[0].channelCode
+      }      
+    });
+    
+   
   }
 });
