@@ -28,7 +28,7 @@ define(["postmonger"], function (Postmonger) {
 
     connection.trigger("requestTokens");
     connection.trigger("requestEndpoints");
-    getCampaignData();
+    
 
     // Disable the next button if a value isn't selected
     $("#select1").change(function () {
@@ -43,6 +43,7 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function initialize(data) {
+    getCampaignData();
     document.getElementById("configuration").value = campaignDisplay;
 
     if (data) {
