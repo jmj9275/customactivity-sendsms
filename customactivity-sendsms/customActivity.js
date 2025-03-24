@@ -59,33 +59,33 @@ define(["postmonger"], function (Postmonger) {
           "templateContent": campaign.template[0].content,
           "channelCode": campaign.template[0].channelCode
         }*/
-          campaignDisplay = {
-            "campaignId": campaign.id,
-            "campaignRef": campaign.campaignRef,
-            "title": campaign.title,
-            "description": campaign.description,
-            "nbMsgSent": campaign.nbMsgSent,
-            "author": campaign.author            
-          }
-          if(campaign.template != null) {
-              if(campaign.template.length > 1) {
-                campaign.template.forEach((templ, idx)=> {
-                  template = {
-                    "templateId": templ[idx].id,
-                    "templateContent":templ[idx].content,
-                    "channelCode": templ[idx].channelCode
-                  }
-                  templateArr.push(template);
-                  campaignDisplayArr.push(templateArr);    
-                })
-
-              } else {
-                campaignDisplay.template = {
-                  "templateId": campaign.template[0].id,
-                  "templateContent": campaign.template[0].content,
-                  "channelCode": campaign.template[0].channelCode
+        campaignDisplay = {
+          "campaignId": campaign.id,
+          "campaignRef": campaign.campaignRef,
+          "title": campaign.title,
+          "description": campaign.description,
+          "nbMsgSent": campaign.nbMsgSent,
+          "author": campaign.author            
+        }
+        if(campaign.template != null) {
+            if(campaign.template.length > 1) {
+              campaign.template.forEach((templ, idx)=> {
+                template = {
+                  "templateId": templ.id,
+                  "templateContent":templ.content,
+                  "channelCode": templ.channelCode
                 }
+                templateArr.push(template);
+                campaignDisplay.template = templateArr;    
+              })
+
+            } else {
+              campaignDisplay.template = {
+                "templateId": campaign.template[0].id,
+                "templateContent": campaign.template[0].content,
+                "channelCode": campaign.template[0].channelCode
               }
+            }
 
           } 
         campaignDisplayArr.push(campaignDisplay);    
