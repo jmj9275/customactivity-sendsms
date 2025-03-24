@@ -140,7 +140,7 @@ define(["postmonger"], function (Postmonger) {
     // create object to display
      // obj recomposed
     let campaigns = mockCampaign.content;
-    campaigns.forEach(campaign => {
+    $.each(campaigns, function (index, campaign) {    
       campaignDisplay = {
         "campaignId": campaign.id,
         "campaignRef": campaign.campaignRef,
