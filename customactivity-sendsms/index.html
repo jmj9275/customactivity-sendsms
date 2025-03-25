@@ -35,14 +35,37 @@
 
       .cards {
         margin: 1rem;
+
+      }
+      .campaignSelector {
+        background-color:#1423dc;
+        color: white;
+        padding:0.5rem;
+        border-radius:6px;
       }      
       .card {
+        display: flex;
         width: 90%;
         margin: 0.5rem;
-        border: 1px solid #d3d3d3;
+        border: 2px solid #1423dc;
         padding: 1rem;
         border-radius: 5px;
         background-color: white;
+      }
+
+      h2 {
+        /*display: inline-block;*/
+        margin: 0.5rem;
+      }
+      .col5{
+        width: 5%;
+        align-content: center;
+        align-content: center;
+        border-right: 2px solid #d3d3d3;
+      }
+      .col95{
+        width:95%;
+        padding-left: 1rem;
       }
 
     </style>
@@ -56,13 +79,10 @@
         <option value="anotherMessage">Another SMS</option>
         <option value="thirdMessage">Third SMS</option>
         <option value="unknownMessage">Unknown SMS</option>
-      </select>
-      <textarea id="configuration"></textarea>
+      </select>      
     </div>
 
-    <div class="cards">
-      <div id="camp"></div>      
-    </div>
+    <div class="cards"></div>
 
   </body>
 </html>
