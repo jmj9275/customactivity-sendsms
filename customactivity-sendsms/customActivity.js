@@ -45,64 +45,87 @@ define(["postmonger"], function (Postmonger) {
       console.log("mockCampaign");
       console.log(json);
       
-      let campaigns = json.content;
+      let campaigns = json;
       let campaignDisplayArr = [];
-      let templateArr = [];      
-      campaigns.forEach(campaign => {
-        /*campaignDisplay = {
-          "campaignId": campaign.id,
-          "campaignRef": campaign.campaignRef,
-          "title": campaign.title,
-          "description": campaign.description,
-          "nbMsgSent": campaign.nbMsgSent,
-          "author": campaign.author,
-          "templateId": campaign.template[0].id,
-          "templateContent": campaign.template[0].content,
-          "channelCode": campaign.template[0].channelCode
-        }*/
-        campaignDisplay = {
-          "campaignId": campaign.id,
-          "campaignRef": campaign.campaignRef,
-          "title": campaign.title,
-          "description": campaign.description,
-          "nbMsgSent": campaign.nbMsgSent,
-          "author": campaign.author            
-        }
-        if(campaign.template != null) {
-            if(campaign.template.length > 1) {
-              campaign.template.forEach((templ, idx)=> {
-                template = {
-                  "templateId": templ.id,
-                  "templateContent":templ.content,
-                  "channelCode": templ.channelCode
-                }
-                templateArr.push(template);
-                campaignDisplay.template = templateArr;    
-              })
-
-            } else {
-              campaignDisplay.template = {
-                "templateId": campaign.template[0].id,
-                "templateContent": campaign.template[0].content,
-                "channelCode": campaign.template[0].channelCode
-              }
-            }
-
-          } 
-        campaignDisplayArr.push(campaignDisplay);    
-      });
-      console.log('campaignDisplay');
-      console.log(campaignDisplay);
-      console.log('campaignDisplayArr');
-      console.log(campaignDisplayArr);
+      let templateArr = [];
       
-      document.getElementById("configuration").value = JSON.stringify(campaignDisplayArr);
-
-      $.each(campaignDisplayArr, function(i) {
-        var templateString = '<article class="card"><h2>' + campaignDisplayArr[i].title + '</h2><p>' + campaignDisplayArr[i].description + '</p><p>' + campaignDisplayArr[i].template + '</p>'
-        +'<P>'+ campaignDisplayArr[i].template[i].templateContent+'</P>'+ '<button class="alertButton" id='+campaignDisplayArr[i].campaignId+'>Select Campaign</button></article>';
-        $('#camp').append(templateString);
-      })
+      campaigns.content.forEach((campaign, idx) => {
+        campaignDisplay = {
+             "campaignId": campaign.id,
+             "campaignRef": campaign.campaignRef,
+             "title": campaign.title,
+             "description": campaign.description,
+             "nbMsgSent": campaign.nbMsgSent,
+             "author": campaign.author            
+           }
+           if(campaign.template != null) {
+             if(campaign.template.length > 1) {
+               campaign.template.forEach((templ, idx)=> {
+                 console.log(templ)
+                templates = {                    
+                   "templateId": templ.id,
+                   "templateContent":templ.content                  
+                 }                 
+ 
+                 templateArr.push(templates);
+                 campaignDisplay.templates = templateArr;    
+               })
+ 
+             } else {
+               campaignDisplay.templateId = campaign.template[0].id;
+               campaignDisplay.templateContent = campaign.template[0].content;                
+             }
+           } else {
+             campaignDisplay.templateId = 'Non défini dans la solution Smartpush';
+             campaignDisplay.templateContent = 'Non défini dans la solution Smartpush';
+           }
+         campaignDisplayArr.push(campaignDisplay);    
+       });
+       console.log('campaignDisplay');
+       console.log(campaignDisplay);
+       console.log('campaignDisplayArr');
+       console.log(campaignDisplayArr);   
+       
+        $.each(campaignDisplayArr, function(i, campaign) { 
+ 
+         if (campaign.templates) {        
+          var test = `<p class="templatesDispo"> ${campaign.templates.map(template =>
+           `<p>
+           <input type="checkbox" name="campaignChoice" value="${template.templateId}"/>
+             ${template.templateContent}</p>`).join('')} </p>`          
+ 
+            var card = `<article class="card">
+            <div class="col5">
+              <input type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
+           </div>
+           <div class="col95">
+            <h2>Campagne: ${campaignDisplayArr[i].title}</h2>
+            <p> ${campaignDisplayArr[i].description}</p>
+             ${test}
+             </div>          
+            </article>`;           
+ 
+         } else {
+           var card = `<article class="card">
+            <div class="col5">
+              <input type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
+           </div>
+           <div class="col95">
+           <h2>Campagne: ${campaignDisplayArr[i].title}</h2>
+           <span>${campaignDisplayArr[i].description}</span>
+           <p>Preview template :</p>
+           <p> ${campaignDisplayArr[i].templateContent}</p>
+           </div>
+           </article>`;
+           
+ 
+         }
+ 
+         $('#camp').append(card);
+         //document.write(card);
+         console.log(card)
+       }) 
+     
       $(".alertButton").on("click", function() {
         alert(campaignDisplayArr[i].campaignId);
       });
