@@ -7,8 +7,7 @@ define(["postmonger"], function (Postmonger) {
   var codePostalVille;
   var nomEnquete;
   var SubscriberKey;
-  var campaignDisplay;
-  var template;
+  var campaignDisplay;  
 
   $(window).ready(onRender);
 
@@ -26,18 +25,23 @@ define(["postmonger"], function (Postmonger) {
 
     connection.trigger("requestTokens");
     connection.trigger("requestEndpoints");
-    
+
+    //disable done button
+    connection.trigger("updateButton", {
+      button: "done",
+      enabled:false
+    });
 
     // Disable the next button if a value isn't selected
-    $("#select1").change(function () {
-      var message = getMessage();
-      connection.trigger("updateButton", {
-        button: "done",
-        enabled: Boolean(message),
-      });
-
-      $("#message").html(message);
-    });
+    //$("#select1").change(function () {
+    //  var message = getMessage();
+    //  connection.trigger("updateButton", {
+    //    button: "done",
+    //    enabled: Boolean(message),
+    //  });
+//
+    //  $("#message").html(message);
+    //});
   }
 
   function getCampaignData() {
@@ -127,9 +131,16 @@ define(["postmonger"], function (Postmonger) {
          console.log(card)
        }) 
      
-      $(".alertButton").on("click", function() {
-        alert(campaignDisplayArr[i].campaignId);
-      });
+      // If there is no message selected, disable the next button
+    if (!message) {
+      connection.trigger("updateButton", { button: "done", enabled: false });
+      // If there is a message, skip to the summary step
+    } else {
+      $("#select1")
+        .find("option[value=" + message + "]")
+        .attr("selected", "selected");
+      $("#message").html(message);
+    }
 
     });
     
