@@ -123,7 +123,7 @@ define(["postmonger"], function (Postmonger) {
          }
  
          $('#camp').append(card);
-         //document.write(card);
+         document.write(card);
          console.log(card)
        }) 
      
