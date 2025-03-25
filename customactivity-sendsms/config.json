@@ -24,7 +24,7 @@
           "codePostalVille": "{{Contact.Attribute.poc_sms_updated.codePostalVille}}"
         },
         {
-          "nomEnquete": "{{Contact.Attribute.poc_sms_updated.nomEnquete}}"
+          "nomEnquete": "{{Event.EventKey.nomEnquete}}"
         },
         {
           "SubscriberKey": "{{Contact.Attribute.poc_sms_updated.SubscriberKey}}"
