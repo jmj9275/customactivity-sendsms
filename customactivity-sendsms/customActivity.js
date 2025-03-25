@@ -122,8 +122,8 @@ define(["postmonger"], function (Postmonger) {
  
          }
  
-         $('#camp').append(card);
-         document.write(card);
+         $('.cards').append(card);
+         //document.write(card);
          console.log(card)
        }) 
      
