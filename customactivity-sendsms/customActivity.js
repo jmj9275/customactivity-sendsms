@@ -48,6 +48,7 @@ define(["postmonger"], function (Postmonger) {
       let campaigns = json;
       let campaignDisplayArr = [];
       let templateArr = [];
+      let templates;
       
       campaigns.content.forEach((campaign, idx) => {
         campaignDisplay = {
