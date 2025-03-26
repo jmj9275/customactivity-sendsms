@@ -272,7 +272,7 @@ define(["postmonger"], function (Postmonger) {
         console.log('Checkbox checked:', checkedValue);
 
         // Déclencher l'updateActivity avec la nouvelle valeur
-        eventEmitter.trigger('updateActivity', payload);
+       // connection.trigger('updateActivity', payload);
   }
 
   $(document).on('change', 'input[name="campaignChoice"]', function () {
