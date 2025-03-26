@@ -31,6 +31,10 @@ define(["postmonger"], function (Postmonger) {
       button: "done",
       enabled:false
     });
+    connection.on('clickedNext', function () {
+      console.log('Next button clicked');
+      saveCheckboxState(); // Sauvegarde l'état des checkboxes avant de passer à l'étape suivante
+    });
 
     // Disable the done button if a campaign isn't selected
     //$("#select1").change(function () {
@@ -128,6 +132,7 @@ define(["postmonger"], function (Postmonger) {
          $('.cards').append(card);
          //document.write(card);
          console.log(card)
+         checkCheckboxState();
        }) 
      
       // If there is no message selected, disable the next button
@@ -246,21 +251,28 @@ define(["postmonger"], function (Postmonger) {
   function getCampaign() {
     return $("#select1").find("option:selected").attr("value").trim();
   }
-
   function checkCheckboxState() {
-    let checkboxes = $('input[name="campaignChoice"]'); // Sélectionne toutes les checkboxes avec le name spécifié
-    let checkedCheckbox = checkboxes.filter(':checked'); // Trouve la checkbox cochée
+    let checkboxes = $('input[name="campaignChoice"]');
+    let checkedCheckbox = checkboxes.filter(':checked');
 
     if (checkedCheckbox.length > 0) {
-        checkboxes.not(':checked').prop('disabled', true); // Désactive les autres
+        checkboxes.not(':checked').prop('disabled', true);
     } else {
-        checkboxes.prop('disabled', false); // Réactive toutes les checkboxes si aucune n'est cochée
+        checkboxes.prop('disabled', false);
     }
+  }
 
-    $(document).on('change', 'input[name="campaignChoice"]', function () {
+  function saveCheckboxState() {
+    let checkedValues = $('input[name="campaignChoice"]:checked').map(function () {
+        return $(this).val();
+    }).get();
+
+    console.log('Checkboxes checked:', checkedValues);
+    eventEmitter.trigger('updateActivity', { checkedValues });
+  }
+
+  $(document).on('change', 'input[name="campaignChoice"]', function () {
       checkCheckboxState();
   });
-}
-
   
 });
