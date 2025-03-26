@@ -221,7 +221,7 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function save() {
-    var name = $('input[name="campaignChoice"]:checked').data("campaign").html();
+    var name = $('input[name="campaignChoice"]:checked').getAttribute("data-campaign").html();
     var value = getMessage();
     var campaignSelected = saveCheckboxState();
     console.log("campaign Selected : "+ campaignSelected);
