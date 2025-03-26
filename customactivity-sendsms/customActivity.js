@@ -224,7 +224,7 @@ define(["postmonger"], function (Postmonger) {
     var testname = $('input[name="campaignChoice"]:checked');
     console.log('testname :')
     console.log(testname)
-    var testname2 = testname.getAttribute("data-campaign");
+    var testname2 = testname.data("campaign");
     console.log('testname2 :')
     console.log(testname2)
     var testname3 = testname2.html();
