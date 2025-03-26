@@ -104,7 +104,7 @@ define(["postmonger"], function (Postmonger) {
  
             var card = `<article class="card">
             <div class="col5">
-              <input data-campaign=${campaignDisplayArr[i].title} type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
+              <input data-campaign="${campaignDisplayArr[i].title}" type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
            </div>
            <div class="col95">
             <h2>Campagne: ${campaignDisplayArr[i].title}</h2>
@@ -116,7 +116,7 @@ define(["postmonger"], function (Postmonger) {
          } else {
            var card = `<article class="card">
             <div class="col5">
-              <input data-campaign=${campaignDisplayArr[i].title} type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
+              <input data-campaign="${campaignDisplayArr[i].title}" type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
            </div>
            <div class="col95">
            <h2>Campagne: ${campaignDisplayArr[i].title}</h2>
