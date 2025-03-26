@@ -12,7 +12,7 @@ define(["postmonger"], function (Postmonger) {
   $(window).ready(onRender);
 
   connection.on("initActivity", getCampaignData);
- // connection.on("initActivity", initialize);
+  connection.on("initActivity", initialize);
   
   connection.on("requestedTokens", onGetTokens);
   connection.on("requestedEndpoints", onGetEndpoints);
