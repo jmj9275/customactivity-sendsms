@@ -128,12 +128,6 @@ define(["postmonger"], function (Postmonger) {
          $('.cards').append(card);
          //document.write(card);
          console.log(card)
-         // Récupérer la valeur existante dans le payload
-        let existingValue = getExistingCheckedValue(payload);
-        restoreCheckboxState(existingValue);
-
-        // Vérifier l'état des checkboxes au démarrage
-        checkCheckboxState();
        }) 
      
       // If there is no message selected, disable the next button
@@ -224,8 +218,6 @@ define(["postmonger"], function (Postmonger) {
   function save() {
     var name = $("#select1").find("option:selected").html();
     var value = getMessage();
-    let checkedValue = getCheckedValue();
-    console.log('Checkbox checked:', checkedValue);
 
     // 'payload' is initialized on 'initActivity' above.
     // Journey Builder sends an initial payload with defaults
@@ -251,26 +243,24 @@ define(["postmonger"], function (Postmonger) {
     return $("#select1").find("option:selected").attr("value").trim();
   }
 
+  function getCampaign() {
+    return $("#select1").find("option:selected").attr("value").trim();
+  }
+
   function checkCheckboxState() {
-    let checkboxes = $('input[name="campaignChoice"]');
-    let checkedCheckbox = checkboxes.filter(':checked');
+    let checkboxes = $('input[name="campaignChoice"]'); // Sélectionne toutes les checkboxes avec le name spécifié
+    let checkedCheckbox = checkboxes.filter(':checked'); // Trouve la checkbox cochée
 
     if (checkedCheckbox.length > 0) {
-        checkboxes.not(':checked').prop('disabled', true);
+        checkboxes.not(':checked').prop('disabled', true); // Désactive les autres
     } else {
-        checkboxes.prop('disabled', false);
+        checkboxes.prop('disabled', false); // Réactive toutes les checkboxes si aucune n'est cochée
     }
-  }
 
-  function getCheckedValue() {
-    return $('input[name="checkboxGroup"]:checked').val() || null;
-  }
-
-  $(document).on('change', 'input[name="checkboxGroup"]', function () {
-    checkCheckboxState();
-});
-
-  
+    $(document).on('change', 'input[name="campaignChoice"]', function () {
+      checkCheckboxState();
+  });
+}
 
   
 });
