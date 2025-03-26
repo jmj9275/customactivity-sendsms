@@ -221,13 +221,8 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function save() {
-    var testname = $('input[name="campaignChoice"]:checked');
-    console.log('testname :')
-    console.log(testname)
-    var testname2 = testname.data("campaign");
-    console.log('testname2 :')
-    console.log(testname2)    
-    var value = getMessage();
+    var testname = $('input[name="campaignChoice"]:checked');    
+    var testname2 = testname.data("campaign");    
     var campaignSelected = saveCheckboxState();
     console.log("campaign Selected : "+ campaignSelected);
 
@@ -237,16 +232,13 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = testname2;
 
-    payload["arguments"].execute.inArguments.push({       
-       campaignId: campaignSelected
-      });
-    
-     
-    
-    
-
+    let inArgs = payload.arguments.execute.inArguments;
+    inArgs.push({ campaignId: campaignSelected })
+    //payload["arguments"].execute.inArguments.push({"campaignId": campaignSelected});
+           
     payload["metaData"].isConfigured = true;
     console.log('payload before update')
+    
     console.log(payload)
     connection.trigger("updateActivity", payload);
   }
