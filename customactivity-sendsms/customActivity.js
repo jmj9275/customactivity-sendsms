@@ -236,7 +236,7 @@ define(["postmonger"], function (Postmonger) {
         "codePostalVille": codePostalVille,
         "nomEnquete": nomEnquete,
         "SubscriberKey": SubscriberKey,*/
-       // "campaignId": value
+       // "campaignId": campaignSelected
      // }); 
     
     
@@ -270,6 +270,7 @@ define(["postmonger"], function (Postmonger) {
     }).get();
 
     console.log('Checkboxes checked:', checkedValues);
+    return checkedValues;
     //connection.trigger('updateActivity', { checkedValues });
   }
 
