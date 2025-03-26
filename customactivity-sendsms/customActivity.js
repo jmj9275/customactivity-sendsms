@@ -235,8 +235,8 @@ define(["postmonger"], function (Postmonger) {
     //   
     //   "campaignId": campaignSelected
     //  });
-    payload["arguments"].execute.inArguments.campaignId = campaignSelected;
-    //jQuery.extend(payload["arguments"].execute.inArguments, {'campaignId':campaignSelected, 'templateId': ''}) 
+    //payload["arguments"].execute.inArguments.campaignId = campaignSelected;
+    jQuery.extend(payload["arguments"].execute.inArguments, {'campaignId':campaignSelected, 'templateId': ''}) 
     
     
 
