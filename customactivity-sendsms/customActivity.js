@@ -223,6 +223,8 @@ define(["postmonger"], function (Postmonger) {
   function save() {
     var name = $("#select1").find("option:selected").html();
     var value = getMessage();
+    var campaignSelected = saveCheckboxState();
+    console.log("campaign Selected : "+ campaignSelected);
 
     // 'payload' is initialized on 'initActivity' above.
     // Journey Builder sends an initial payload with defaults
@@ -268,7 +270,7 @@ define(["postmonger"], function (Postmonger) {
     }).get();
 
     console.log('Checkboxes checked:', checkedValues);
-    eventEmitter.trigger('updateActivity', { checkedValues });
+    //connection.trigger('updateActivity', { checkedValues });
   }
 
   $(document).on('change', 'input[name="campaignChoice"]', function () {
