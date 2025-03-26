@@ -236,12 +236,13 @@ define(["postmonger"], function (Postmonger) {
     //   "campaignId": campaignSelected
     //  });
     //payload["arguments"].execute.inArguments.campaignId = campaignSelected;
-    jQuery.extend(payload["arguments"].execute.inArguments, {'campaignId':campaignSelected, 'templateId': ''}) 
+    $.extend(payload["arguments"].execute.inArguments, {'campaignId':campaignSelected, 'templateId': ''}) 
     
     
 
     payload["metaData"].isConfigured = true;
-
+    console.log('payload before update')
+    console.log(payload)
     connection.trigger("updateActivity", payload);
   }
 
