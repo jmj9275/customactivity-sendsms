@@ -263,9 +263,16 @@ define(["postmonger"], function (Postmonger) {
         checkboxes.prop('disabled', false);
     }
   }
+  function getCheckedValue() {
+    return $('input[name="checkboxGroup"]:checked').val() || null;
+  }
 
   function saveCheckboxState() {
-    return $('input[name="checkboxGroup"]:checked').val() || null;
+    let checkedValue = getCheckedValue();
+        console.log('Checkbox checked:', checkedValue);
+
+        // Déclencher l'updateActivity avec la nouvelle valeur
+        eventEmitter.trigger('updateActivity', payload);
   }
 
   $(document).on('change', 'input[name="campaignChoice"]', function () {
