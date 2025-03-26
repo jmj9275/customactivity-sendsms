@@ -265,13 +265,7 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function saveCheckboxState() {
-    let checkedValues = $('input[name="campaignChoice"]:checked').map(function () {
-        return $(this).val();
-    }).get();
-
-    console.log('Checkboxes checked:', checkedValues);
-    return checkedValues;
-    //connection.trigger('updateActivity', { checkedValues });
+    return $('input[name="checkboxGroup"]:checked').val() || null;
   }
 
   $(document).on('change', 'input[name="campaignChoice"]', function () {
