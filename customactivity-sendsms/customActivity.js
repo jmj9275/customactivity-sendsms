@@ -232,7 +232,7 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = testname2;
 
-    let inArgs = updatedPayload.arguments.execute.inArguments;
+    let inArgs = payload.arguments.execute.inArguments;
     inArgs.push({ campaignId: campaignSelected })
     //payload["arguments"].execute.inArguments.push({"campaignId": campaignSelected});
            
