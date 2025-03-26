@@ -237,14 +237,8 @@ define(["postmonger"], function (Postmonger) {
     // may be overridden as desired.
     payload.name = testname2;
 
-    payload["arguments"].execute.inArguments.push({       
-       campaignId: campaignSelected
-      });
-    
-     
-    
-    
-
+    payload["arguments"].execute.inArguments.push({"campaignId": campaignSelected});
+           
     payload["metaData"].isConfigured = true;
     console.log('payload before update')
     console.log(payload)
