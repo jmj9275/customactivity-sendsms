@@ -12,7 +12,7 @@ define(["postmonger"], function (Postmonger) {
   $(window).ready(onRender);
 
   connection.on("initActivity", getCampaignData);
-  connection.on("initActivity", initialize);
+ // connection.on("initActivity", initialize);
   
   connection.on("requestedTokens", onGetTokens);
   connection.on("requestedEndpoints", onGetEndpoints);
@@ -104,7 +104,7 @@ define(["postmonger"], function (Postmonger) {
  
             var card = `<article class="card">
             <div class="col5">
-              <input type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
+              <input data-campaign=${campaignDisplayArr[i].title} type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
            </div>
            <div class="col95">
             <h2>Campagne: ${campaignDisplayArr[i].title}</h2>
@@ -116,7 +116,7 @@ define(["postmonger"], function (Postmonger) {
          } else {
            var card = `<article class="card">
             <div class="col5">
-              <input type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
+              <input data-campaign=${campaignDisplayArr[i].title} type="checkbox" name="campaignChoice" value="${campaignDisplayArr[i].campaignId}"/>
            </div>
            <div class="col95">
            <h2>Campagne: ${campaignDisplayArr[i].title}</h2>
@@ -221,7 +221,7 @@ define(["postmonger"], function (Postmonger) {
   }
 
   function save() {
-    var name = $("#select1").find("option:selected").html();
+    var name = $('input[name="campaignChoice"]:checked').data("campaign").html();
     var value = getMessage();
     var campaignSelected = saveCheckboxState();
     console.log("campaign Selected : "+ campaignSelected);
@@ -230,9 +230,10 @@ define(["postmonger"], function (Postmonger) {
     // Journey Builder sends an initial payload with defaults
     // set by this activity's config.json file.  Any property
     // may be overridden as desired.
-    //payload.name = name;
+    payload.name = name;
+
     payload["arguments"].execute.inArguments.push({       
-       "campaignId": campaignSelected
+       campaignId: campaignSelected
       });
     
      
@@ -275,5 +276,5 @@ define(["postmonger"], function (Postmonger) {
   $(document).on('change', 'input[name="campaignChoice"]', function () {
       checkCheckboxState();
   });
-  
+
 });
