@@ -263,13 +263,14 @@ define(["postmonger"], function (Postmonger) {
     }
   }
   function getCheckedValue() {
-    return $('input[name="checkboxGroup"]:checked').val() || null;
+    let cId = $('input[name="checkboxGroup"]:checked').val() || null;
+    return cId;
   }
 
   function saveCheckboxState() {
     let checkedValue = getCheckedValue();
-        console.log('Checkbox checked:', checkedValue);
-
+    console.log('Checkbox checked:', checkedValue);
+    return checkedValue;
         // Déclencher l'updateActivity avec la nouvelle valeur
        // connection.trigger('updateActivity', payload);
   }
