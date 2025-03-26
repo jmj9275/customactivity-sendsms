@@ -231,13 +231,12 @@ define(["postmonger"], function (Postmonger) {
     // set by this activity's config.json file.  Any property
     // may be overridden as desired.
     //payload.name = name;
-    payload["arguments"].execute.inArguments.push({
-       /* "telephoneMobile": telephoneMobile,
-        "codePostalVille": codePostalVille,
-        "nomEnquete": nomEnquete,
-        "SubscriberKey": SubscriberKey,*/
-       "campaignId": campaignSelected
-      }); 
+    //payload["arguments"].execute.inArguments.push({
+    //   
+    //   "campaignId": campaignSelected
+    //  });
+    payload["arguments"].execute.inArguments.campaignId = campaignSelected;
+    //jQuery.extend(payload["arguments"].execute.inArguments, {'campaignId':campaignSelected, 'templateId': ''}) 
     
     
 
