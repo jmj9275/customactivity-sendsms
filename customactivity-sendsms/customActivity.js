@@ -226,10 +226,7 @@ define(["postmonger"], function (Postmonger) {
     console.log(testname)
     var testname2 = testname.data("campaign");
     console.log('testname2 :')
-    console.log(testname2)
-    var testname3 = testname2.html();
-    console.log('testname3 :')
-    console.log(testname3)
+    console.log(testname2)    
     var value = getMessage();
     var campaignSelected = saveCheckboxState();
     console.log("campaign Selected : "+ campaignSelected);
@@ -238,7 +235,7 @@ define(["postmonger"], function (Postmonger) {
     // Journey Builder sends an initial payload with defaults
     // set by this activity's config.json file.  Any property
     // may be overridden as desired.
-    payload.name = name;
+    payload.name = testname2;
 
     payload["arguments"].execute.inArguments.push({       
        campaignId: campaignSelected
