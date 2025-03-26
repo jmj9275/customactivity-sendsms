@@ -32,7 +32,7 @@ define(["postmonger"], function (Postmonger) {
       enabled:false
     });
 
-    // Disable the next button if a value isn't selected
+    // Disable the done button if a campaign isn't selected
     //$("#select1").change(function () {
     //  var message = getMessage();
     //  connection.trigger("updateButton", {
@@ -65,8 +65,7 @@ define(["postmonger"], function (Postmonger) {
            }
            if(campaign.template != null) {
              if(campaign.template.length > 1) {
-               campaign.template.forEach((templ, idx)=> {
-                 console.log(templ)
+               campaign.template.forEach((templ, idx)=> {                
                 templates = {                    
                    "templateId": templ.id,
                    "templateContent":templ.content                  
@@ -86,10 +85,10 @@ define(["postmonger"], function (Postmonger) {
            }
          campaignDisplayArr.push(campaignDisplay);    
        });
-       console.log('campaignDisplay');
+      /* console.log('campaignDisplay');
        console.log(campaignDisplay);
        console.log('campaignDisplayArr');
-       console.log(campaignDisplayArr);   
+       console.log(campaignDisplayArr);  */ 
        
         $.each(campaignDisplayArr, function(i, campaign) { 
  
@@ -129,6 +128,12 @@ define(["postmonger"], function (Postmonger) {
          $('.cards').append(card);
          //document.write(card);
          console.log(card)
+         // Récupérer la valeur existante dans le payload
+        let existingValue = getExistingCheckedValue(payload);
+        restoreCheckboxState(existingValue);
+
+        // Vérifier l'état des checkboxes au démarrage
+        checkCheckboxState();
        }) 
      
       // If there is no message selected, disable the next button
@@ -219,6 +224,8 @@ define(["postmonger"], function (Postmonger) {
   function save() {
     var name = $("#select1").find("option:selected").html();
     var value = getMessage();
+    let checkedValue = getCheckedValue();
+    console.log('Checkbox checked:', checkedValue);
 
     // 'payload' is initialized on 'initActivity' above.
     // Journey Builder sends an initial payload with defaults
@@ -243,6 +250,27 @@ define(["postmonger"], function (Postmonger) {
   function getMessage() {
     return $("#select1").find("option:selected").attr("value").trim();
   }
+
+  function checkCheckboxState() {
+    let checkboxes = $('input[name="campaignChoice"]');
+    let checkedCheckbox = checkboxes.filter(':checked');
+
+    if (checkedCheckbox.length > 0) {
+        checkboxes.not(':checked').prop('disabled', true);
+    } else {
+        checkboxes.prop('disabled', false);
+    }
+  }
+
+  function getCheckedValue() {
+    return $('input[name="checkboxGroup"]:checked').val() || null;
+  }
+
+  $(document).on('change', 'input[name="checkboxGroup"]', function () {
+    checkCheckboxState();
+});
+
+  
 
   
 });
