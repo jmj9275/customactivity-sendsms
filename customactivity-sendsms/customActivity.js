@@ -248,10 +248,7 @@ define(["postmonger"], function (Postmonger) {
   function getMessage() {
     return $("#select1").find("option:selected").attr("value").trim();
   }
-
-  function getCampaign() {
-    return $("#select1").find("option:selected").attr("value").trim();
-  }
+  
   function checkCheckboxState() {
     let checkboxes = $('input[name="campaignChoice"]');
     let checkedCheckbox = checkboxes.filter(':checked');
@@ -263,7 +260,7 @@ define(["postmonger"], function (Postmonger) {
     }
   }
   function getCheckedValue() {
-    let cId = $('input[name="checkboxGroup"]:checked').val() || null;
+    let cId = $('input[name="campaignChoice"]:checked').val() || null;
     return cId;
   }
 
